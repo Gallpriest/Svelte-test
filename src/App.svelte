@@ -1,46 +1,20 @@
 <script>
-	import Button from './components/Button.svelte';
+	export const start = '';
+	import Tabs from './containers/Tabs/Tabs.svelte';
 
-	export let name = '';
-	export let surname = '';
-
-	// Button variables
-	const btnValue = 'Create';
-	let count = 0;
-
-	$: computedVal = count % 2 === 0 ? 'even' : 'odd';
-	$: if (count >= 12) {
-		alert('Stop count and reset!');
-		count = 0;
-	}
-
-	const handleClick = () => {
-		count += 1;
-	}
+	const tabs = ['First', 'Second', 'Third'];
+	const content = [
+		{ id: 'First', data: 'Anton' },
+		{ id: 'Second', data: 'Kirill' },
+		{ id: 'Third', data: 'Julia' },
+	]
+	const props = { tabs, content };
 </script>
 
 <main>
-	<h1>Hello {name} {surname}!</h1>
-	<Button
-		name="Create" 
-		styles="btn-default_dark"
-		handlerCallback={handleClick}
-	/>
-	<div>
-		{count}
-	</div>
-	<div>
-		reactive value - {computedVal}
-	</div>
-	{#if computedVal === 'even'}
-		<div>
-			<h1>THIS VALUE IS EVEN</h1>
-		</div>
-	{:else}
-		<div>
-			<h1>THIS VALUE IS ODD</h1>
-		</div>
-	{/if}
+	<h1>Hello!</h1>
+	<div>{start}</div>
+	<Tabs {...props}/>
 </main>
 
 <style>
@@ -49,10 +23,6 @@
 		padding: 1em;
 		height: 100%;
 		margin: 0 auto;
-		background-image: url('https://images.unsplash.com/photo-1458668383970-8ddd3927deed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1347&q=80');
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
 	}
 
 	h1 {
